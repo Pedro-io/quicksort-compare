@@ -1,0 +1,10 @@
+tamanho,versao,tempo_medio_s,comparacoes_media,trocas_media
+1000,Quicksort recursivo,0.0056994400001713075,12474.0,3795.0
+1000,Quicksort híbrido (M = 8),0.006582559998787474,11177.0,3795.0
+1000,Quicksort híbrido com mediana de três (M = 8),0.00482120000233408,11544.0,4481.0
+10000,Quicksort recursivo,0.35412965999857987,584998.0,48401.0
+10000,Quicksort híbrido (M = 8),0.33786209999962014,583498.0,48401.0
+10000,Quicksort híbrido com mediana de três (M = 8),0.37675204000115625,598536.0,49858.0
+50000,Quicksort recursivo,8.991337819998444,12929058.0,146354.0
+50000,Quicksort híbrido (M = 8),8.663099119998515,12927558.0,146354.0
+50000,Quicksort híbrido com mediana de três (M = 8),9.15291303999984,13042342.0,235978.0
