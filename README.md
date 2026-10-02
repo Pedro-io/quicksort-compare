@@ -77,5 +77,3 @@ Para reexecutar todas as células e regenerar tabelas e figuras:
 - Nas massas ordenada e inversa, o Quicksort recursivo e o híbrido apresentam custo quadrático, com exatamente n(n - 1)/2 comparações, enquanto a mediana de três mantém o custo O(n log n).
 - A massa com muitos elementos repetidos evidencia a fragilidade do particionamento de Lomuto diante de chaves duplicadas.
 - O experimento do pior caso forçado confirma o crescimento quadrático do tempo, com razões próximas de 4 ao dobrar o tamanho do vetor.
-
-Os detalhes completos, com tabelas e análise crítica, estão em `ACHADOS.md`.
