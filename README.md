@@ -16,9 +16,7 @@ Todas as versões mantêm contadores de comparações e de trocas, utilizam o re
 - `notebooks/analise_quicksort.ipynb`: notebook com todas as análises, executável de ponta a ponta;
 - `resultados/tabelas/`: tabelas em formato CSV com os resultados dos experimentos;
 - `resultados/figuras/`: figuras geradas pelo notebook;
-- `scripts/`: scripts de apoio para reconstruir o notebook, o documento de achados e o relatório;
-- `relatorio/`: projeto LaTeX do relatório final, pronto para compilação no Overleaf (ver `relatorio/LEIA-ME.txt`);
-- `ACHADOS.md`: documento com todos os achados do estudo, incluindo metodologia, resultados e análise.
+- `relatorio/`: versão em PDF do relatório final e as figuras utilizadas nele.
 
 ## Como executar
 
@@ -31,7 +29,7 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements.txt
 ```
 
-No Windows, o executável do ambiente fica em `.venv/Scripts/`; em Linux e macOS, em `.venv/bin/`.
+No Windows, o executável do ambiente fica em `.venv/Scripts/`, em Linux e macOS, em `.venv/bin/`.
 
 ### 2. Testes de correção
 
@@ -39,7 +37,7 @@ No Windows, o executável do ambiente fica em `.venv/Scripts/`; em Linux e macOS
 .venv/Scripts/python -m quicksort.teste_correcao
 ```
 
-### 3. notebook de análises
+### 3. Notebook de análises
 
 Para abrir o notebook de forma interativa:
 
@@ -53,23 +51,36 @@ Para reexecutar todas as células e regenerar tabelas e figuras:
 .venv/Scripts/jupyter nbconvert --to notebook --execute --inplace notebooks/analise_quicksort.ipynb
 ```
 
-### 4. Regenerar os artefatos (opcional)
-
-```bash
-.venv/Scripts/python scripts/construir_notebook.py
-.venv/Scripts/python scripts/aplicar_analise.py
-.venv/Scripts/python scripts/gerar_achados.py
-.venv/Scripts/python scripts/gerar_relatorio.py
-```
+Os tempos de execução variam a cada execução, conforme a carga da máquina, portanto, uma reexecução produz tempos diferentes dos apresentados no relatório. Os números de comparações e de trocas são determinísticos e se reproduzem exatamente. O valor de M utilizado nos experimentos é fixado em 8 no notebook, de modo que uma reexecução não altera a configuração das versões comparadas.
 
 ## Convenções adotadas
 
 - Uma comparação é contabilizada a cada comparação entre dois elementos.
-- Uma troca é contabilizada a cada troca de posição entre dois elementos.
-- Na ordenação por inserção, cada deslocamento de um elemento para a direita é contabilizado como uma troca; a escrita da chave em sua posição final não é contabilizada.
+- Uma troca é contabilizada a cada troca de posição entre dois elementos. A troca de um elemento com ele mesmo (mesma posição) não é realizada nem contabilizada, por isso, no vetor já ordenado com pivô no último elemento, o Quicksort recursivo e o híbrido registram zero trocas.
+- Na ordenação por inserção, cada deslocamento de um elemento para a direita é contabilizado como uma troca, a escrita da chave em sua posição final não é contabilizada.
 - Na escolha do pivô pela mediana de três, as três comparações e as trocas realizadas na escolha do pivô são contabilizadas, assim como a movimentação do pivô para o último elemento antes da partição.
 - O tempo de execução é medido com a função `time.perf_counter`, que utiliza o relógio da máquina.
 - As massas de teste são geradas com semente fixa, garantindo que todas as versões e repetições utilizem exatamente os mesmos dados.
+
+## Ambiente dos experimentos
+
+Os resultados apresentados no relatório foram obtidos com Python 3.11.9 no Windows 11 (build 26200). A função `platform.platform()` do Python 3.11 identifica esse sistema como "Windows-10-10.0.26200", porque o Windows 11 mantém a versão interna 10.0, o número de build 26200 corresponde ao Windows 11.
+
+## Correspondência com o relatório
+
+As tabelas e figuras do relatório foram geradas pelo notebook e estão gravadas em `resultados/`. As figuras em `relatorio/figuras/` são cópias idênticas das figuras em `resultados/figuras/`.
+
+| Relatório | Tabela (`resultados/tabelas/`) | Figura (`resultados/figuras/`) |
+|---|---|---|
+| Tabela 1 e Figura 1: determinação de M (1000 elementos) | `determinacao_m_1000.csv` | `determinacao_m.png` |
+| Tabela 2: confirmação de M (10000 elementos) | `determinacao_m_10000.csv` | — |
+| Tabela 3 e Figura 2: massa aleatória | `comparativo_aleatorio.csv` | `comparativo_aleatorio.png` |
+| Tabela 4 e Figura 3: massa ordenada | `comparativo_ordenado.csv` | `comparativo_ordenado.png` |
+| Tabela 5 e Figura 4: massa ordenada inversamente | `comparativo_inverso.csv` | `comparativo_inverso.png` |
+| Tabela 6 e Figura 5: massa com muitos repetidos | `comparativo_repetidos.csv` | `comparativo_repetidos.png` |
+| Tabela 7 e Figura 6: pior caso forçado | `pior_caso.csv` | `pior_caso.png` |
+
+As Tabelas 8 e 9 do relatório (razões entre tamanhos consecutivos) são calculadas no notebook a partir de `pior_caso.csv`. Os tempos estão em segundos, exceto nos arquivos de determinação de M, em que estão em milissegundos. Os arquivos de determinação de M foram transcritos das saídas gravadas no notebook, que exibem o tempo com seis casas decimais.
 
 ## Resultados principais
 
