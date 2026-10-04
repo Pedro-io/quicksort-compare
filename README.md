@@ -66,6 +66,22 @@ Os tempos de execução variam a cada execução, conforme a carga da máquina, 
 
 Os resultados apresentados no relatório foram obtidos com Python 3.11.9 no Windows 11 (build 26200). A função `platform.platform()` do Python 3.11 identifica esse sistema como "Windows-10-10.0.26200", porque o Windows 11 mantém a versão interna 10.0, o número de build 26200 corresponde ao Windows 11.
 
+## Correspondência com o relatório
+
+As tabelas e figuras do relatório foram geradas pelo notebook e estão gravadas em `resultados/`. As figuras em `relatorio/figuras/` são cópias idênticas das figuras em `resultados/figuras/`.
+
+| Relatório | Tabela (`resultados/tabelas/`) | Figura (`resultados/figuras/`) |
+|---|---|---|
+| Tabela 1 e Figura 1: determinação de M (1000 elementos) | `determinacao_m_1000.csv` | `determinacao_m.png` |
+| Tabela 2: confirmação de M (10000 elementos) | `determinacao_m_10000.csv` | — |
+| Tabela 3 e Figura 2: massa aleatória | `comparativo_aleatorio.csv` | `comparativo_aleatorio.png` |
+| Tabela 4 e Figura 3: massa ordenada | `comparativo_ordenado.csv` | `comparativo_ordenado.png` |
+| Tabela 5 e Figura 4: massa ordenada inversamente | `comparativo_inverso.csv` | `comparativo_inverso.png` |
+| Tabela 6 e Figura 5: massa com muitos repetidos | `comparativo_repetidos.csv` | `comparativo_repetidos.png` |
+| Tabela 7 e Figura 6: pior caso forçado | `pior_caso.csv` | `pior_caso.png` |
+
+As Tabelas 8 e 9 do relatório (razões entre tamanhos consecutivos) são calculadas no notebook a partir de `pior_caso.csv`. Os tempos estão em segundos, exceto nos arquivos de determinação de M, em que estão em milissegundos. Os arquivos de determinação de M foram transcritos das saídas gravadas no notebook, que exibem o tempo com seis casas decimais.
+
 ## Resultados principais
 
 - O limiar M foi determinado empiricamente como 8, com vetores aleatórios de 1000 elementos e 100 repetições.
