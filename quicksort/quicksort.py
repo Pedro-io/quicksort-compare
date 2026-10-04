@@ -16,6 +16,9 @@ Convenções adotadas:
     - Uma comparação é contabilizada a cada comparação entre dois elementos
       (ou entre um elemento e a chave ou o pivô).
     - Uma troca é contabilizada a cada troca de posição entre dois elementos.
+      A troca de um elemento com ele mesmo (i == j) não é realizada nem
+      contabilizada. Por isso, no vetor já ordenado com pivô no último
+      elemento, o Quicksort recursivo e o híbrido registram zero trocas.
     - Na ordenação por inserção, cada deslocamento de um elemento para a
       direita é contabilizado como uma troca. A escrita da chave em sua
       posição final não é contabilizada, pois não caracteriza uma troca entre
@@ -51,7 +54,10 @@ class OrdenadorBase:
         return vetor
 
     def _trocar(self, vetor, i, j):
-        """Troca dois elementos de posição, contabilizando a operação."""
+        """Troca dois elementos de posição, contabilizando a operação.
+
+        Quando i == j, nada é feito e nenhuma troca é contabilizada.
+        """
         if i != j:
             vetor[i], vetor[j] = vetor[j], vetor[i]
             self.trocas += 1
@@ -113,10 +119,11 @@ class QuicksortHibrido(OrdenadorBase):
 
     A recursão é interrompida para subvetores com menos de M elementos, que
     são ordenados com o algoritmo de ordenação por inserção. O valor de M é
-    determinado empiricamente em experimento próprio.
+    determinado empiricamente em experimento próprio; o valor padrão, 8, é o
+    valor adotado nos experimentos do relatório.
     """
 
-    def __init__(self, m=10):
+    def __init__(self, m=8):
         super().__init__()
         self.m = m
         self.nome = "Quicksort híbrido (M = {})".format(m)
@@ -140,7 +147,7 @@ class QuicksortHibridoMedianaTres(OrdenadorBase):
     particionamento de Lomuto.
     """
 
-    def __init__(self, m=10):
+    def __init__(self, m=8):
         super().__init__()
         self.m = m
         self.nome = "Quicksort híbrido com mediana de três (M = {})".format(m)
