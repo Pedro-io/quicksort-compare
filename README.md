@@ -85,6 +85,6 @@ As Tabelas 8 e 9 do relatório (razões entre tamanhos consecutivos) são calcul
 ## Resultados principais
 
 - O limiar M foi determinado empiricamente como 8, com vetores aleatórios de 1000 elementos e 100 repetições.
-- Nas massas ordenada e inversa, o Quicksort recursivo e o híbrido apresentam custo quadrático, com exatamente n(n - 1)/2 comparações, enquanto a mediana de três mantém o custo O(n log n).
+- Nas massas ordenada e inversa, o Quicksort recursivo e o híbrido apresentam custo quadrático, com exatamente n(n - 1)/2 comparações no recursivo e poucas comparações a menos no híbrido, enquanto a mediana de três mantém o custo Θ(n log n).
 - A massa com muitos elementos repetidos evidencia a fragilidade do particionamento de Lomuto diante de chaves duplicadas.
 - O experimento do pior caso forçado confirma o crescimento quadrático do tempo, com razões próximas de 4 ao dobrar o tamanho do vetor.
